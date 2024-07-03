@@ -1,32 +1,36 @@
-import styles from './Header.module.css';
-import BurguerMenu from '../BurguerMenu/BurguerMenu';
+// src/components/Header.jsx
+import { useState } from 'react';
+import './Header.css';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <header>
-      <a className={styles.logo} href='#'>
-        <span>Master</span> Project
-      </a>
-      <nav className={styles.navbar}>
+    <header className='header'>
+      <div className='logo'>Logo</div>
+      <nav className={`menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <li>
-            <a>Home</a>
+            <a href='#home'>Home</a>
           </li>
           <li>
-            <a>About</a>
+            <a href='#about'>About</a>
           </li>
           <li>
-            <a>Contact</a>
+            <a href='#services'>Services</a>
           </li>
           <li>
-            <a>News</a>
-          </li>
-          <li>
-            <a>Project</a>
+            <a href='#contact'>Contact</a>
           </li>
         </ul>
       </nav>
-      <BurguerMenu />
+      <div className='hamburger' onClick={toggleMenu}>
+        &#9776;
+      </div>
     </header>
   );
 };
